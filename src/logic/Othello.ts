@@ -1,16 +1,6 @@
-class Player {
-    private name: string;
-    private chosenColor: DiscStatus;
-    private myTurn: boolean;
+import Player from './Player';
 
-    constructor(name: string, chosenColor: DiscStatus, myTurn: boolean) {
-        this.name = name;
-        this.chosenColor = chosenColor;
-        this.myTurn = myTurn;
-    }
-}
-
-class Othello {
+export class Othello {
     private player1: Player;
     private player2: Player;
     private board: DiscStatus[];
@@ -37,7 +27,7 @@ class Othello {
     }
 }
 
-enum DiscStatus {
+export enum DiscStatus {
     Empty,
     White,
     Black,

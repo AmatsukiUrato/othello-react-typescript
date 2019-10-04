@@ -1,16 +1,15 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import HUE from '@material-ui/core/colors/HUE';
-
 import './App.css';
+import Player from './logic/Player';
 
 const App: React.FC = () => {
     return (
         <div className="App">
             <div className="block">
-
+                <div className="disc">test</div>
             </div>
-            <Button variant="contained" color={green[500]}>Hello World</Button>
+            <Button variant="contained" color="primary">Hello</Button>
             <header className="App-header">
                 <a
                     className="App-link"
