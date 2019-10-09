@@ -6,22 +6,7 @@ import Player from './logic/Player';
 import { Container, makeStyles, Box, Input, Button } from '@material-ui/core';
 import { Othello, DiscStatus } from './logic/Othello';
 
-// こいつが原因
-const useStyles = makeStyles(theme => ({
-    disc: {
-        borderRadius: "50%",
-        width: "46px",
-        height: "46px",
-    },
 
-    discWhite: {
-        backgroundColor: "white",
-    },
-
-    button: {
-        margin: theme.spacing(1),
-    }
-}));
 
 type AppState = {
     count: number;
@@ -36,8 +21,6 @@ class Sub extends Component<Readonly<{}>, AppState> {
         }
     }
 
-    classes = useStyles();
-
     private start = () => {
         const currentPlayer = new Player("player1", DiscStatus.White);
         const anotherPlayer = new Player("player1", DiscStatus.White);
@@ -50,6 +33,7 @@ class Sub extends Component<Readonly<{}>, AppState> {
                 <Grid container alignItems="center" justify="center">
                     <Box mt={5}>
                         <Disc discStatus={DiscStatus.Black}></Disc>
+                        <Disc discStatus={DiscStatus.White}></Disc>
                     </Box>
                 </Grid>
                 <Grid container alignItems="center" justify="center">
@@ -61,8 +45,8 @@ class Sub extends Component<Readonly<{}>, AppState> {
                 </Grid>
                 <Grid container alignItems="center" justify="center">
                     <Box mt={5}>
-                        <Button onClick={this.start} variant="contained" color="primary" className={this.classes.button}>スタート</Button>
-                        <Button variant="contained" color="primary" className={this.classes.button}>リセット</Button>
+                        <Button onClick={this.start} variant="contained" color="primary" >スタート</Button>
+                        <Button variant="contained" color="primary">リセット</Button>
                     </Box>
                 </Grid>
             </Container>
