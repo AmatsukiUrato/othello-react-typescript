@@ -32,7 +32,7 @@ export class Othello {
         }
     }
 
-    private swapDisc(row: number, column: number,  ownDisc: DiscStatus) {
+    private swapDisc(row: number, column: number, ownDisc: DiscStatus) {
         this.board[row][column] = ownDisc;
         const opponentDisc =
             (ownDisc === DiscStatus.White) ? DiscStatus.Black : DiscStatus.White;
@@ -61,13 +61,13 @@ export class Othello {
     }
 
     private createBoard(boardSize: number): DiscStatus[][] {
-        const centerPoint: number = boardSize / 2;
-        let board: DiscStatus[][] = Array(boardSize).map((board) => Array(boardSize).fill(DiscStatus.Empty));
+        const centerPoint: number = (boardSize / 2) - 1;
+        let board: DiscStatus[][] = Array(boardSize).fill(0).map((board) => Array(boardSize).fill(DiscStatus.Empty));
 
         board[centerPoint][centerPoint] = DiscStatus.Black;
         board[centerPoint + 1][centerPoint] = DiscStatus.White;
-        board[centerPoint][centerPoint + 1] = DiscStatus.Black;
-        board[centerPoint + 1][centerPoint + 1] = DiscStatus.White;
+        board[centerPoint][centerPoint + 1] = DiscStatus.White;
+        board[centerPoint + 1][centerPoint + 1] = DiscStatus.Black;
 
         return board;
     }

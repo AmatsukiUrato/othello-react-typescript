@@ -3,11 +3,11 @@ import Grid from '@material-ui/core/Grid';
 import Disc from './Disc';
 
 import Player from './logic/Player';
-import { Container, makeStyles, Box, Input, Button } from '@material-ui/core';
+import { Container, Box, Input, Button } from '@material-ui/core';
 import { Othello, DiscStatus } from './logic/Othello';
 
 type AppState = {
-    count: number;
+    boardSize: number;
 }
 
 class App extends Component<Readonly<{}>, AppState> {
@@ -15,33 +15,21 @@ class App extends Component<Readonly<{}>, AppState> {
     constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
-            count: 0,
+            boardSize: 4,
         }
     }
 
-    start = () => {
+    private handleOnClickStart = () => {
         const currentPlayer = new Player("player1", DiscStatus.White);
         const anotherPlayer = new Player("player1", DiscStatus.White);
-        const othello = new Othello(6, currentPlayer, anotherPlayer);
+        const othello = new Othello(this.state.boardSize, currentPlayer, anotherPlayer);
     };
 
-    public render() {
-        const classes = (theme: { spacing: (arg0: number) => void; }) => ({
-            disc: {
-                borderRadius: "50%",
-                width: "46px",
-                height: "46px",
-            },
-        
-            discWhite: {
-                backgroundColor: "white",
-            },
-        
-            button: {
-                margin: theme.spacing(1),
-            }
-        });
+    private handleOnChangeBoardSize = (event: any) => {
+        this.setState({ boardSize: Number(event.target.boardSize) });
+    }
 
+    public render() {
         return (
             <Container>
                 <Grid container alignItems="center" justify="center">
@@ -52,14 +40,21 @@ class App extends Component<Readonly<{}>, AppState> {
                 <Grid container alignItems="center" justify="center">
                     <Box mt={5}>
                         <label>
-                            ボードの大きさ： <Input type="text" ></Input>
+                            ボードの大きさ：
+                            <Input type="text"
+                                value={this.state.boardSize}
+                                onChange={this.handleOnChangeBoardSize}></Input>
                         </label>
                     </Box>
                 </Grid>
                 <Grid container alignItems="center" justify="center">
                     <Box mt={5}>
-                        <Button onClick={this.start} variant="contained" color="primary" className={classes.button}>スタート</Button>
-                        <Button variant="contained" color="primary" className={classes.button}>リセット</Button>
+                        <Box m={1}>
+                            <Button onClick={this.handleOnClickStart} variant="contained" color="primary">スタート</Button>
+                        </Box>
+                        <Box m={1}>
+                            <Button variant="contained" color="primary">リセット</Button>
+                        </Box>
                     </Box>
                 </Grid>
             </Container>
