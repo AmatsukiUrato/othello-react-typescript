@@ -21,7 +21,7 @@ class App extends Component<Readonly<{}>, AppState> {
 
     private handleOnClickStart = () => {
         const currentPlayer = new Player("player1", DiscStatus.White);
-        const anotherPlayer = new Player("player1", DiscStatus.White);
+        const anotherPlayer = new Player("player2", DiscStatus.Black);
         const othello = new Othello(this.state.boardSize, currentPlayer, anotherPlayer);
     };
 
