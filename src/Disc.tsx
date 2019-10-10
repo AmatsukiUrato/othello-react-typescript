@@ -5,8 +5,8 @@ import { DiscStatus } from './logic/Othello';
 const useStyles = makeStyles(theme => ({
     block: {
         backgroundColor: "#72c513",
-        width: "50px",
-        height: "50px",
+        width: "48px",
+        height: "48px",
         borderWidth: "1px",
         borderColor: "rgb(0%, 39.2%, 0%)",
         borderStyle: "Solid",
