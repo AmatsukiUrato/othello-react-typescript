@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
     discBlack: {
         backgroundColor: "black",
     }
+    /* keyFrameObjectで反転させる */
 }));
 
 type DiscProps = {
@@ -29,7 +30,7 @@ type DiscProps = {
 }
 
 const Disc: React.SFC<DiscProps> = (props: DiscProps) => {
-    const classes = useStyles();
+    const classes = useStyles(props);
 
     return (
         <Box display="flex" alignItems="center" justifyContent="center"
@@ -41,6 +42,9 @@ const Disc: React.SFC<DiscProps> = (props: DiscProps) => {
                 } else if (props.discStatus === DiscStatus.Black) {
                     return <Box component="div"
                         className={`${classes.disc} ${classes.discBlack}`}></Box>
+                } else if (props.discStatus === DiscStatus.Empty) {
+                    return <Box component="div"
+                        className={classes.disc}></Box>
                 }
             })()}
         </Box>

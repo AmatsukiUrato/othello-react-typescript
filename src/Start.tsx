@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Disc from './Disc';
-
-import Player from './logic/Player';
 import { Container, Box, Input, Button } from '@material-ui/core';
-import { Othello, DiscStatus } from './logic/Othello';
+import { DiscStatus } from './logic/Othello';
 import { getRandomInt } from './utils/utils';
-import { thisExpression } from '@babel/types';
+import Disc from './Disc';
 
 
 type StartState = {
@@ -23,9 +20,8 @@ class Start extends Component<StartProps, StartState> {
     constructor(props: StartProps) {
         super(props);
         this.state = {
-            boardSize: 0,
+            boardSize: 10,
         }
-        let message = 'Header mounted successfully';
         this.handleOnClickStart = this.handleOnClickStart.bind(this);
         this.handleOnChangeBoardSize = this.handleOnChangeBoardSize.bind(this);
 
@@ -42,7 +38,7 @@ class Start extends Component<StartProps, StartState> {
                 <Grid container alignItems="center" justify="center">
                     <Box width="200px" height="200px" display="flex" flexWrap="wrap">
                         {Array.from(Array(16).keys()).map(index =>
-                            <Disc discStatus={this.getRandomEnumValue()}></Disc>
+                            <Disc discStatus={this.getRandomEnumValue()} key={index}></Disc>
                         )}
                     </Box>
                 </Grid>
@@ -52,6 +48,7 @@ class Start extends Component<StartProps, StartState> {
                             ボードの大きさ：
                             <Input
                                 type="number"
+                                defaultValue={this.state.boardSize}
                                 onChange={this.handleOnChangeBoardSize}></Input>
                         </label>
                         <div>
@@ -75,7 +72,7 @@ class Start extends Component<StartProps, StartState> {
             return false;
         } else if (20 < this.state.boardSize) {
             return false;
-        } else if (this.state.boardSize % 2 == 1) {
+        } else if (this.state.boardSize % 2 === 1) {
             return false;
         } else if (this.state.boardSize === undefined) {
             return false;

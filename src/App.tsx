@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Disc from './Disc';
-
-import Player from './logic/Player';
-import { Container, Box, Input, Button, Fade } from '@material-ui/core';
-import { Othello, DiscStatus } from './logic/Othello';
+import { Fade } from '@material-ui/core';
 import Start from './Start';
 import Board from './Board';
 
 type AppState = {
     showStart: boolean;
-    othello?: Othello;
-    board?: DiscStatus[][];
-
+    boardSize?: number;
 }
 
 class App extends Component<Readonly<{}>, AppState> {
@@ -22,17 +15,13 @@ class App extends Component<Readonly<{}>, AppState> {
         this.state = {
             showStart: true,
         }
+        this.start = this.start.bind(this);
     }
 
     private start = (boardSize: number) => {
-        const currentPlayer = new Player("player1", DiscStatus.White);
-        const anotherPlayer = new Player("player2", DiscStatus.Black);
-        const othello = new Othello(Number(boardSize), currentPlayer, anotherPlayer);
-        const board: DiscStatus[][] = othello.getBoard();
         this.setState({
             showStart: false,
-            othello: othello,
-            board: board,
+            boardSize: boardSize,
         });
     }
 
@@ -46,7 +35,7 @@ class App extends Component<Readonly<{}>, AppState> {
                 </Fade>
                 <Fade in={!this.state.showStart}>
                     <div>
-                    {!this.state.showStart ? <Board parentStatus={this.state}></Board> : null}
+                    {!this.state.showStart ? <Board boardSize={this.state.boardSize}></Board> : null}
                     </div>
                 </Fade>
             </React.Fragment>

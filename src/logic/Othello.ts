@@ -1,5 +1,11 @@
 import Player from './Player';
 
+export enum DiscStatus {
+    Empty,
+    White,
+    Black,
+}
+
 export class Othello {
     private currentPlayer: Player;
     private anotherPlayer: Player;
@@ -15,6 +21,18 @@ export class Othello {
 
     public getBoard(): DiscStatus[][] {
         return this.board;
+    }
+
+    public getBoardSize(): number {
+        return this.boardSize;
+    }
+
+    public getCurrentPlayer() {
+        return this.currentPlayer;
+    }
+
+    public getAnotherPlayer() {
+        return this.anotherPlayer;
     }
 
     public setDisc(
@@ -71,10 +89,4 @@ export class Othello {
 
         return board;
     }
-}
-
-export enum DiscStatus {
-    Empty,
-    White,
-    Black,
 }
